@@ -39,7 +39,7 @@ const questions = [
         type: 'list',
         message: "Which license will you use for this project?",
         name: 'license',
-        choices: ['Apache 2.0 License', 'GNU GPL v3', 'The MIT License'],
+        choices: ['Apache 2.0 License', 'GNU GPL v3', 'The MIT License', 'BSD 3', 'none'],
       },
       {
         type: 'input',
@@ -51,19 +51,23 @@ const questions = [
         name: 'email',
         message: "What is your email address?",
       },
-]; writeToFile();
+];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-fs.writeFile("README.md", generateMarkdown)
-};
-
-
-// TODO: Create a function to initialize app
-function init() {
-    inquirer
-    .prompt(questions)
-};
+    fs.writeFileSync("README.md", generateMarkdown(data), )
+    };
+    
+    
+    // TODO: Create a function to initialize app
+    function init() {
+        inquirer
+        .prompt(questions)
+        .then((data)=>{
+          console.log(data);
+          writeToFile("readme.md", data)
+        })
+    };
 
 // Function call to initialize app
 init();
